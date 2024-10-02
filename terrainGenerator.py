@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from PIL import Image
+import noise.perlin
 import numpy as np
 import noise
 import random 
@@ -10,13 +11,13 @@ scale = 100
 octaves = 4
 persistence =.5
 lacunarity = 2
-
+seed = [random.randint(0,1000000),random.randint(0,1000000)]
 world = np.zeros(shape)
 for i in range(shape[0]):
     for j in range(shape[1]):
         world[i][j] = noise.pnoise2(
-        i/scale,
-        j/scale,
+        (i + seed[0])/scale,
+        (j + seed[1])/scale,
         octaves = octaves,
         persistence = persistence,
         lacunarity = lacunarity,
